@@ -7,17 +7,22 @@ export interface MapDimensions {
 }
 
 export const changeWidth = (newValue: number): void => {
-    if(newValue<0){
+    if (newValue < 0) {
         throw new Error("No se aceptan dimensiones negativas");
     }
     mapDimensions.width = newValue;
 }
 export const changeHeight = (newValue: number): void => {
-    if(newValue<0){
+    if (newValue < 0) {
         throw new Error("No se aceptan dimensiones negativas");
     }
     mapDimensions.height = newValue;
 }
+
 export const getMapDimensions = (): MapDimensions => {
+    return mapDimensions;
+}
+
+export const useDimensions = (): MapDimensions => {
     return mapDimensions;
 }

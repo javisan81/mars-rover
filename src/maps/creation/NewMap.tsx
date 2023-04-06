@@ -1,8 +1,10 @@
 import React, {useState} from "react";
-import {changeHeight, changeWidth, getMapDimensions} from "../dimensions/map-dimensions";
+import {changeHeight, changeWidth, useDimensions} from "../dimensions/map-dimensions";
 import {useNavigate} from "react-router-dom";
+
 export function NewMap() {
     const navigate = useNavigate();
+    const currentDimensions = useDimensions();
     const [readyToContinue, setReadyToContinue] = useState(false);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const onClick = () => {
@@ -12,7 +14,7 @@ export function NewMap() {
     function onChange(e: React.ChangeEvent<HTMLInputElement>, changeMethod: (newValue: number) => void) {
         try {
             changeMethod(parseInt(e.target.value));
-            setReadyToContinue(getMapDimensions().isCompleted());
+            setReadyToContinue(currentDimensions.isCompleted());
         } catch (e) {
             if (e instanceof Error) setErrorMessage(e.message);
         }
