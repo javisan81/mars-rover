@@ -46,4 +46,21 @@ describe('NewMap', function () {
         fireEvent.click(screen.getByText("Juguemos"));
         expect(screen.queryByText("Estamos en el mapa del marsRover")).not.toBeInTheDocument();
     });
+
+    it('should not allow negative numbers inside the dimensions inputs', function () {
+        renderWithRouter(<NewMap/>);
+        userEvent.type(screen.getByLabelText("¿Cual será la altura de nuestro mapa?"), "-1");
+        userEvent.type(screen.getByLabelText("¿Cual será la anchura de nuestro mapa?"), "-2");
+        expect(screen.getByText("No se aceptan dimensiones negativas")).toBeInTheDocument();
+        fireEvent.click(screen.getByText("Juguemos"));
+        expect(screen.queryByText("Estamos en el mapa del marsRover")).not.toBeInTheDocument();
+    });
+
+    it('should not allow introducing text, just numbers', function () {
+        renderWithRouter(<NewMap/>);
+        userEvent.type(screen.getByLabelText("¿Cual será la altura de nuestro mapa?"), "xx");
+        userEvent.type(screen.getByLabelText("¿Cual será la anchura de nuestro mapa?"), "yy");
+        expect(screen.getByLabelText("¿Cual será la altura de nuestro mapa?")).not.toHaveValue("xx");
+        expect(screen.getByLabelText("¿Cual será la anchura de nuestro mapa?")).not.toHaveValue("yy");
+    });
 });

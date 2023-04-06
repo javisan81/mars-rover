@@ -20,9 +20,15 @@ class MyMapDimensions implements MapDimensions{
 const mapDimensions: MapDimensions = new MyMapDimensions(0,0);
 
 export const changeWidth = (newValue: number): void => {
+    if(newValue<0){
+        throw new Error("No se aceptan dimensiones negativas");
+    }
     mapDimensions.width = newValue;
 }
 export const changeHeight = (newValue: number): void => {
+    if(newValue<0){
+        throw new Error("No se aceptan dimensiones negativas");
+    }
     mapDimensions.height = newValue;
 }
 export const getMapDimensions = (): MapDimensions => {
