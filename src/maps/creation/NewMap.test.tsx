@@ -40,4 +40,10 @@ describe('NewMap', function () {
         fireEvent.click(screen.getByText("Juguemos"));
         expect(screen.getByText("Estamos en el mapa del marsRover")).toBeInTheDocument();
     });
+
+    it('should not redirect if the user didnt fill the dimensions', function () {
+        renderWithRouter(<NewMap/>);
+        fireEvent.click(screen.getByText("Juguemos"));
+        expect(screen.queryByText("Estamos en el mapa del marsRover")).not.toBeInTheDocument();
+    });
 });
