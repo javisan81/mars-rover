@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {changeHeight, changeWidth, useDimensions} from "../dimensions/map-dimensions";
+import {changeHeight, changeWidth, useDimensions} from "../../../dimensions/map-dimensions";
 import {useNavigate} from "react-router-dom";
 
 export function NewMap() {

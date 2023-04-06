@@ -2,7 +2,7 @@ import React from 'react';
 import {fireEvent, render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {NewMap} from "./NewMap";
-import {getMapDimensions} from "../dimensions/map-dimensions";
+import {getMapDimensions} from "../../../dimensions/map-dimensions";
 import {createMemoryRouter, RouterProvider} from "react-router-dom";
 
 function renderWithRouter(element: JSX.Element) {
