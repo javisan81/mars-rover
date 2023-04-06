@@ -2,7 +2,7 @@ import React from 'react';
 import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {NewMap} from "./NewMap";
-import {height, width} from "../dimensions/map-dimensions";
+import {getMapDimensions} from "../dimensions/map-dimensions";
 
 describe('NewMap', function () {
     it('should ask for map dimensions', function () {
@@ -15,7 +15,7 @@ describe('NewMap', function () {
         render(<NewMap/>);
         userEvent.type(screen.getByLabelText("¿Cual será la altura de nuestro mapa?"), "1");
         userEvent.type(screen.getByLabelText("¿Cual será la anchura de nuestro mapa?"), "2");
-        expect(height).toEqual(1);
-        expect(width).toEqual(2);
+        expect(getMapDimensions().height).toEqual(1);
+        expect(getMapDimensions().width).toEqual(2);
     });
 });

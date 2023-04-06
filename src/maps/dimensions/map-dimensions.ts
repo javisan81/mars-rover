@@ -1,8 +1,19 @@
-export let width = 0;
-export let height = 0;
-export const changeWidth = (newValue: string) => {
-    width = parseInt(newValue);
+export interface MapDimensions {
+    width: number;
+    height: number;
 }
-export const changeHeight = (newValue: string) => {
-    height = parseInt(newValue);
+
+const mapDimensions: MapDimensions = {
+    width: 0,
+    height: 0,
+}
+
+export const changeWidth = (newValue: string): void => {
+    mapDimensions.width = parseInt(newValue);
+}
+export const changeHeight = (newValue: string): void => {
+    mapDimensions.height = parseInt(newValue);
+}
+export const getMapDimensions = (): MapDimensions => {
+    return mapDimensions;
 }
