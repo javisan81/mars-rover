@@ -19,11 +19,11 @@ class MyMapDimensions implements MapDimensions{
 
 const mapDimensions: MapDimensions = new MyMapDimensions(0,0);
 
-export const changeWidth = (newValue: string): void => {
-    mapDimensions.width = parseInt(newValue);
+export const changeWidth = (newValue: number): void => {
+    mapDimensions.width = newValue;
 }
-export const changeHeight = (newValue: string): void => {
-    mapDimensions.height = parseInt(newValue);
+export const changeHeight = (newValue: number): void => {
+    mapDimensions.height = newValue;
 }
 export const getMapDimensions = (): MapDimensions => {
     return mapDimensions;

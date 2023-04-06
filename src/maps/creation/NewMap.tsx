@@ -8,13 +8,18 @@ export function NewMap() {
     const onClick = () => {
         navigate("/map");
     }
-    const onChangeHeight = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+    function onChange(e: React.ChangeEvent<HTMLInputElement>, changeMethod: (newValue: number) => void) {
+        changeMethod(parseInt(e.target.value));
         setReadyToContinue(getMapDimensions().isCompleted());
-        changeHeight(e.target.value);
     }
+
+    const onChangeHeight = (e: React.ChangeEvent<HTMLInputElement>) => {
+        onChange(e, changeHeight);
+    }
+
     const onChangeWidth = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setReadyToContinue(getMapDimensions().isCompleted());
-        changeWidth(e.target.value);
+        onChange(e, changeWidth);
     }
     return (
         <div>
