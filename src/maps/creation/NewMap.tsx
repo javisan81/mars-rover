@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import {changeHeight, changeWidth, getMapDimensions} from "../dimensions/map-dimensions";
 import {useNavigate} from "react-router-dom";
-
 export function NewMap() {
     const navigate = useNavigate();
     const [readyToContinue, setReadyToContinue] = useState(false);
