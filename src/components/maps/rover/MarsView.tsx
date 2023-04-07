@@ -7,16 +7,19 @@ interface MarsRowProps {
     cols: number;
 }
 
+export const COLUMN_NAME = "Col";
+export const ROW_NAME = "Row";
+
 const MarsRow = ({rowNumber, cols}: MarsRowProps) => {
     let rangeForSurfaces = Array.from(Array(cols).keys()).map(x => x + 1);
     if (rowNumber === 1) {
         rangeForSurfaces.shift();
     }
     return (
-        <div aria-label={"Row"}>
+        <div aria-label={ROW_NAME + rowNumber}>
             {rowNumber === 1 && <RoverElement/>}
             {
-                rangeForSurfaces.map((col) => <SurfaceElement key={col}/>)
+                rangeForSurfaces.map((col) => (<div key={col} aria-label={COLUMN_NAME + col}><SurfaceElement/>)</div>))
             }
         </div>
     )
@@ -31,7 +34,7 @@ const SurfaceElement = (): JSX.Element => (
     </div>
 );
 const RoverElement = (): JSX.Element => (
-    <div>
+    <div aria-label={COLUMN_NAME + "1"}>
         <img
             src={rover}
             alt="Mars Rover"
