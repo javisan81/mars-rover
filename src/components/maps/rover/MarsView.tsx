@@ -1,5 +1,5 @@
 import {useDimensions} from "../../../dimensions/map-dimensions";
-import {Direction, MoveCommand, Position, useMarsRover} from "./MarsRover";
+import {Direction, MoveCommand, Position, useMarsRover} from "../../../marsRover/MarsRover";
 import {useState} from "react";
 import {RoverElement, SurfaceElement} from "./MarsElements";
 

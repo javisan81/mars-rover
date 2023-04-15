@@ -1,5 +1,5 @@
 import surface from "./mars-surface.jpeg";
-import {Direction} from "./MarsRover";
+import {Direction} from "../../../marsRover/MarsRover";
 import rover from "./rover.png";
 import {rotationByDirection} from "./MarsView";
 

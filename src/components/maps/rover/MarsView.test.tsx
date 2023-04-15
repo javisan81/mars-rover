@@ -1,8 +1,8 @@
 import {render, screen, within} from "@testing-library/react";
 import * as dimensions from "../../../dimensions/map-dimensions";
 import {COLUMN_NAME, MarsView, rotationByDirection, ROW_NAME} from "./MarsView";
-import * as MarsRover from "./MarsRover";
-import {Direction, MoveCommand, Position} from "./MarsRover";
+import * as MarsRover from "../../../marsRover/MarsRover";
+import {Direction, MoveCommand, Position} from "../../../marsRover/MarsRover";
 
 import userEvent from "@testing-library/user-event";
 import spyOn = jest.spyOn;
