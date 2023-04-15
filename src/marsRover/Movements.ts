@@ -50,25 +50,20 @@ const Right = new Map<Direction, Direction>(
         [Direction.South, Direction.West]
     ]
 );
+function calculateByLimit(dimension: number, maxDimensionLimit: number){
+    if (dimension === 0) {
+        return maxDimensionLimit;
+    }
+    if (dimension === maxDimensionLimit + 1) {
+        return 1;
+    }
+    return dimension;
+}
 
 function adjustToMap(position: Position, map: MarsMap): Position {
-    let row = position.row;
-    if (position.row === 0) {
-        row = map.maxHeight;
-    }
-    if (position.row === map.maxHeight + 1) {
-        row = 1;
-    }
-    let col = position.col;
-    if (position.col === 0) {
-        col = map.maxWidth;
-    }
-    if (position.col === map.maxWidth + 1) {
-        col = 1;
-    }
     return {
-        row,
-        col
+        row: calculateByLimit(position.row, map.maxHeight),
+        col: calculateByLimit(position.col, map.maxWidth)
     };
 }
 
