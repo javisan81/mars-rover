@@ -4,7 +4,10 @@
   ],
   "exports": [
     {
-      "modules": "MarsRover"
+      "modules": "MarsRoverHook"
+    },
+    {
+      "modules": "MarsRoverInterface"
     }
   ]
 }

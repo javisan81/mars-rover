@@ -1,7 +1,8 @@
 import {useDimensions} from "../../../dimensions/map-dimensions";
-import {Direction, MoveCommand, Position, useMarsRover} from "../../../marsRover/MarsRover";
+import {useMarsRover} from "../../../marsRover/MarsRoverHook";
 import {useState} from "react";
 import {RoverElement, SurfaceElement} from "./MarsElements";
+import {Direction, MoveCommand, Position} from "../../../marsRover/MarsRoverInterface";
 
 interface MarsRowProps {
     rowNumber: number;

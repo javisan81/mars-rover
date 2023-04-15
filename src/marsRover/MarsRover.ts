@@ -1,31 +1,14 @@
-export enum MoveCommand {
-    Forward = "Forward",
-    Backward = "Backward",
-    Left = "Left", Right = "Right"
-}
-export enum Direction {
-    North= "North",
-    South= "South",
-    East = "East",
-    West = "West"
-}
+import {Direction, MarsRoverUseCase, MoveCommand, Position} from "./MarsRoverInterface";
 
-export interface Position {
-    row: number;
-    col: number;
-}
+export class MarsRover implements MarsRoverUseCase {
+    getDirection(): Direction {
+        return Direction.West;
+    }
 
-interface MarsRoverUseCase {
-    move: (comands: MoveCommand[]) => void;
-    getPosition: () => Position;
-    getDirection: () => Direction;
-}
+    getPosition(): Position {
+        return {row: 1, col: 1};
+    }
 
-export const useMarsRover = (): MarsRoverUseCase => {
-    return {
-        move: (comands: MoveCommand[]) => {
-        },
-        getPosition: () => ({row: 1, col: 1}),
-        getDirection: () => Direction.West
+    move(comands: MoveCommand[]): void {
     }
 }
