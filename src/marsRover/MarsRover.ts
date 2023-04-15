@@ -40,7 +40,7 @@ export class MarsRover implements MarsRoverUseCase {
     move(commands: MoveCommand[]): void {
         commands.forEach((command) => {
             this.positionDirection = new PositionDirection(
-                nextPosition(command, this.getDirection(), this.getPosition()),
+                nextPosition(command, this.getDirection(), this.getPosition(), this.map),
                 nextDirection(command, this.getDirection())
             );
         })

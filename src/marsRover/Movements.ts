@@ -1,4 +1,4 @@
-import {Direction, MoveCommand, Position} from "./MarsRoverInterface";
+import {Direction, MarsMap, MoveCommand, Position} from "./MarsRoverInterface";
 
 class Vector {
     private readonly x: number
@@ -51,7 +51,14 @@ const Right = new Map<Direction, Direction>(
     ]
 );
 
-export function nextPosition(command: MoveCommand, direction: Direction, currentPosition: Position): Position {
+function adjustToMap(position: Position, map: MarsMap): Position {
+    return {
+        ...position,
+        row: position.row === 0 ? map.maxHeight : position.row
+    };
+}
+
+export function nextPosition(command: MoveCommand, direction: Direction, currentPosition: Position, map: MarsMap): Position {
     let vector = samePositionVector;
     switch (command) {
         case MoveCommand.Backward:
@@ -61,7 +68,7 @@ export function nextPosition(command: MoveCommand, direction: Direction, current
             vector = Forward.get(direction) || samePositionVector;
             break
     }
-    return vector.apply(currentPosition)
+    return adjustToMap(vector.apply(currentPosition), map);
 }
 
 export function nextDirection(command: MoveCommand, currentDirection: Direction): Direction {
