@@ -1,12 +1,12 @@
-import {Direction, MarsRoverUseCase, MoveCommand, Position} from "./MarsRoverInterface";
+import {Direction, MarsRoverUseCase, MoveCommand, Position, PositionDirection} from "./MarsRoverInterface";
 
 export class MarsRover implements MarsRoverUseCase {
     private position: Position;
     private direction: Direction;
 
-    constructor(position: Position, direction: Direction) {
-        this.position = position;
-        this.direction = direction;
+    constructor(positionDirection: PositionDirection) {
+        this.position = positionDirection.position;
+        this.direction = positionDirection.direction;
     }
 
     getDirection(): Direction {
