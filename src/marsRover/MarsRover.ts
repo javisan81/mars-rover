@@ -32,11 +32,13 @@ export class MarsRover implements MarsRoverUseCase {
     }
 
     move(commands: MoveCommand[]): void {
-        const {direction} = this.positionDirection;
-        this.positionDirection = new PositionDirection(
-            getVector(direction, commands[0]).apply(this.positionDirection.position),
-            nextDirection(commands[0], this.getDirection())
-        );
+        commands.forEach((command) => {
+            const {direction} = this.positionDirection;
+            this.positionDirection = new PositionDirection(
+                getVector(direction, command).apply(this.positionDirection.position),
+                nextDirection(command, this.getDirection())
+            );
+        })
     }
 
 }

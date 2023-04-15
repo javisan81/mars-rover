@@ -98,4 +98,11 @@ describe('MarsRoverInterface use case', function () {
         expect(rover.getPosition()).toEqual(finalPositionDirection.position);
         expect(rover.getDirection()).toEqual(finalPositionDirection.direction);
     });
+
+    it('should move the rover by multiple commands', function () {
+        const rover = new MarsRover(new PositionDirection({row: 1, col: 3}, Direction.West));
+        rover.move([MoveCommand.Left, MoveCommand.Forward, MoveCommand.Right, MoveCommand.Backward]);
+        expect(rover.getPosition()).toEqual({row: 2, col: 4});
+        expect(rover.getDirection()).toEqual(Direction.West);
+    });
 });

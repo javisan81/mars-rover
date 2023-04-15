@@ -1,7 +1,8 @@
 export enum MoveCommand {
     Forward = "Forward",
     Backward = "Backward",
-    Left = "Left", Right = "Right"
+    Left = "Left",
+    Right = "Right"
 }
 
 export enum Direction {
@@ -10,7 +11,6 @@ export enum Direction {
     East = "East",
     West = "West"
 }
-
 
 
 export interface Position {
