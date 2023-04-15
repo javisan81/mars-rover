@@ -2,8 +2,12 @@ import {Direction, MoveCommand,} from "./MarsRoverInterface";
 import {MarsRover, PositionDirection} from "./MarsRover";
 
 describe('MarsRoverInterface use case', function () {
+    const defaultMap = {
+        maxWidth: 5,
+        maxHeight: 5
+    }
     it('should be created in position 1,1 facing west', function () {
-        const rover = new MarsRover(new PositionDirection({row: 1, col: 1}, Direction.West));
+        const rover = new MarsRover(new PositionDirection({row: 1, col: 1}, Direction.West), defaultMap);
         expect(rover.getPosition()).toEqual({row: 1, col: 1});
         expect(rover.getDirection()).toEqual(Direction.West);
     });
@@ -24,7 +28,7 @@ describe('MarsRoverInterface use case', function () {
             new PositionDirection({row: 2, col: 2}, Direction.South),
         ],
     ])(`should move forward the rover from %s to %s`, (initialPositionDirection, finalPositionDirection) => {
-        const rover = new MarsRover(initialPositionDirection);
+        const rover = new MarsRover(initialPositionDirection, defaultMap);
         rover.move([MoveCommand.Forward]);
         expect(rover.getPosition()).toEqual(finalPositionDirection.position);
         expect(rover.getDirection()).toEqual(finalPositionDirection.direction);
@@ -47,7 +51,7 @@ describe('MarsRoverInterface use case', function () {
             new PositionDirection({row: 1, col: 2}, Direction.South),
         ],
     ])(`should move backward the rover from %s to %s`, (initialPositionDirection, finalPositionDirection) => {
-        const rover = new MarsRover(initialPositionDirection);
+        const rover = new MarsRover(initialPositionDirection, defaultMap);
         rover.move([MoveCommand.Backward]);
         expect(rover.getPosition()).toEqual(finalPositionDirection.position);
         expect(rover.getDirection()).toEqual(finalPositionDirection.direction);
@@ -70,7 +74,7 @@ describe('MarsRoverInterface use case', function () {
             new PositionDirection({row: 1, col: 2}, Direction.East),
         ],
     ])(`should turn left the rover from %s to %s`, (initialPositionDirection, finalPositionDirection) => {
-        const rover = new MarsRover(initialPositionDirection);
+        const rover = new MarsRover(initialPositionDirection, defaultMap);
         rover.move([MoveCommand.Left]);
         expect(rover.getPosition()).toEqual(finalPositionDirection.position);
         expect(rover.getDirection()).toEqual(finalPositionDirection.direction);
@@ -93,14 +97,14 @@ describe('MarsRoverInterface use case', function () {
             new PositionDirection({row: 1, col: 2}, Direction.West),
         ],
     ])(`should turn right the rover from %s to %s`, (initialPositionDirection, finalPositionDirection) => {
-        const rover = new MarsRover(initialPositionDirection);
+        const rover = new MarsRover(initialPositionDirection, defaultMap);
         rover.move([MoveCommand.Right]);
         expect(rover.getPosition()).toEqual(finalPositionDirection.position);
         expect(rover.getDirection()).toEqual(finalPositionDirection.direction);
     });
 
     it('should move the rover by multiple commands', function () {
-        const rover = new MarsRover(new PositionDirection({row: 1, col: 3}, Direction.West));
+        const rover = new MarsRover(new PositionDirection({row: 1, col: 3}, Direction.West), defaultMap);
         rover.move([MoveCommand.Left, MoveCommand.Forward, MoveCommand.Right, MoveCommand.Backward]);
         expect(rover.getPosition()).toEqual({row: 2, col: 4});
         expect(rover.getDirection()).toEqual(Direction.West);

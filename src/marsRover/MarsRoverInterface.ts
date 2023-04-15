@@ -17,9 +17,14 @@ export interface Position {
     row: number;
     col: number;
 }
+export interface MarsMap {
+    maxHeight: number,
+    maxWidth: number
+}
 
 export interface MarsRoverUseCase {
     move: (commands: MoveCommand[]) => void;
     getPosition: () => Position;
     getDirection: () => Direction;
+    getMap: () => MarsMap;
 }
