@@ -1,6 +1,6 @@
 import {Direction, MoveCommand, Position} from "./MarsRoverInterface";
 
-class Movements {
+class Vector {
     private readonly x: number
     private readonly y: number
 
@@ -14,22 +14,22 @@ class Movements {
     }
 }
 
-const samePositionVector = new Movements(0, 0);
+const samePositionVector = new Vector(0, 0);
 
-const Forward = new Map<Direction, Movements>(
+const Forward = new Map<Direction, Vector>(
     [
-        [Direction.West, new Movements(-1, 0)],
-        [Direction.East, new Movements(1, 0)],
-        [Direction.North, new Movements(0, -1)],
-        [Direction.South, new Movements(0, 1)]
+        [Direction.West, new Vector(-1, 0)],
+        [Direction.East, new Vector(1, 0)],
+        [Direction.North, new Vector(0, -1)],
+        [Direction.South, new Vector(0, 1)]
     ]
 );
-const Backward = new Map<Direction, Movements>(
+const Backward = new Map<Direction, Vector>(
     [
-        [Direction.West, new Movements(1, 0)],
-        [Direction.East, new Movements(-1, 0)],
-        [Direction.North, new Movements(0, 1)],
-        [Direction.South, new Movements(0, -1)]
+        [Direction.West, new Vector(1, 0)],
+        [Direction.East, new Vector(-1, 0)],
+        [Direction.North, new Vector(0, 1)],
+        [Direction.South, new Vector(0, -1)]
     ]
 );
 
@@ -51,7 +51,7 @@ const Right = new Map<Direction, Direction>(
     ]
 );
 
-export function getVector(direction: Direction, command: MoveCommand): Movements {
+export function getVector(direction: Direction, command: MoveCommand): Vector {
     switch (command) {
         case MoveCommand.Backward:
             return Backward.get(direction) || samePositionVector;
