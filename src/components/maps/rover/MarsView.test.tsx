@@ -41,7 +41,8 @@ function mockMarsRover(newPositionWhenMoving: Position, newDirection: Direction)
             direction = newDirection;
         },
         getPosition: () => position,
-        getDirection: () => direction
+        getDirection: () => direction,
+        getMap: () => ({maxHeight:1, maxWidth: 1})
     })
 }
 
