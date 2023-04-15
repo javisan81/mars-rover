@@ -94,5 +94,14 @@ describe("MarsView", () => {
             expectRoverInPosition(1, 1);
             expectRoverFacing(Direction.South);
         });
+        it('should turn right', function () {
+            mockMarsRover({row: 1, col: 1}, Direction.North);
+            mockDimensions(2, 2);
+            const {rerender} = render(<MarsView/>);
+            userEvent.click(screen.getByText("Right"));
+            rerender(<MarsView/>);
+            expectRoverInPosition(1, 1);
+            expectRoverFacing(Direction.North);
+        });
     });
 });
