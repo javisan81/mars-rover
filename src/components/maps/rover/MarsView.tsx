@@ -41,10 +41,10 @@ const MarsRow = ({rowNumber, cols, roverPosition, roverDirection}: MarsRowProps)
     let rangeForSurfaces = Array.from(Array(cols).keys()).map(x => x + 1);
     const {row: roversRow, col: roversCol} = roverPosition;
     return (
-        <div aria-label={`${ROW_NAME}${rowNumber}`} className="surface-grid-wrapper">
+        <div aria-label={`${ROW_NAME}${rowNumber}`} className="surface-row">
             {
                 rangeForSurfaces.map((col) => (
-                    <div key={col} aria-label={`${COLUMN_NAME}${col}`}>
+                    <div key={col} aria-label={`${COLUMN_NAME}${col}`} className={"surface-col"}>
                         {
                             <MarsCol rowNumber={rowNumber} colNumber={col} roversRow={roversRow} roversCol={roversCol}
                                      roverDirection={roverDirection}/>
@@ -74,14 +74,19 @@ export const MarsView = (): JSX.Element => {
 
     const rowsStream = Array.from(Array(height).keys()).map(x => x + 1);
     return (
-        <div>
-            {
-                rowsStream.map(row => <MarsRow key={row} cols={width}
-                                            rowNumber={row}
-                                            roverPosition={roverPosition}
-                                            roverDirection={roverDirection}/>)
-            }
+        <div className={"map"}>
+            <h1>
+                Mars
+            </h1>
             <div>
+                {
+                    rowsStream.map(row => <MarsRow key={row} cols={width}
+                                                   rowNumber={row}
+                                                   roverPosition={roverPosition}
+                                                   roverDirection={roverDirection}/>)
+                }
+            </div>
+            <div className={"commands"}>
                 <button onClick={() => move(MoveCommand.Forward)}>Forward</button>
                 <button onClick={() => move(MoveCommand.Backward)}>Backward</button>
                 <button onClick={() => turn(MoveCommand.Left)}>Left</button>

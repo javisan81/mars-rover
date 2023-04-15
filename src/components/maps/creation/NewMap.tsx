@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {changeHeight, changeWidth, useDimensions} from "../../../dimensions/map-dimensions";
 import {useNavigate} from "react-router-dom";
+import "./newMap.css";
 
 export function NewMap() {
     const navigate = useNavigate();
@@ -28,14 +29,20 @@ export function NewMap() {
         onChange(e, changeWidth);
     }
     return (
-        <div>
+        <div className={"newMap"}>
+            <h1>Mars Rover</h1>
             {errorMessage && <span>{errorMessage}</span>}
-            <label htmlFor={"height"}>¿Cual será la altura de nuestro mapa?</label>
-            <input id={"height"} type="number" onChange={onChangeHeight}/>
-            <label htmlFor={"anchura"}>¿Cual será la anchura de nuestro mapa?</label>
-            <input id={"anchura"} type="number" onChange={onChangeWidth}/>
-            <label htmlFor={"continue"}>Juguemos</label>
-            <input id="continue" type={"button"} onClick={onClick} disabled={!readyToContinue}/>
+            <div className={"question"}>
+                <label htmlFor={"height"}>¿Cual será la altura de nuestro mapa?</label>
+                <input id={"height"} type="number" onChange={onChangeHeight}/>
+            </div>
+            <div className={"question"}>
+                <label htmlFor={"anchura"}>¿Cual será la anchura de nuestro mapa?</label>
+                <input id={"anchura"} type="number" onChange={onChangeWidth}/>
+            </div>
+            <button id="continue" type={"button"} onClick={onClick} disabled={!readyToContinue}>
+                Juguemos
+            </button>
         </div>
     );
 }

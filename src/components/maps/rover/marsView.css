@@ -1,19 +1,14 @@
-.surface-grid {
-  box-shadow: 0 0 20px 20px #9a5e3f;
-}
-
-.surface-grid-wrapper {
-  display: flex;
-  justify-content: center;
-  padding-top: 25px;
-}
-
 .surface-row {
   display: flex;
+  justify-content: center;
+}
+
+.surface-col {
+  width: 100px;
+  height: 100px;
 }
 
 .surface-elem {
-  padding: 1px;
   align-items: center;
   justify-items: center;
   background-color: rgba(214, 14, 16, 0.31);
@@ -29,4 +24,19 @@
 .img-surface {
   width: 100px;
   height: 100px;
+}
+
+
+.commands {
+  padding-top: 25px;
+  display: flex;
+  justify-content: center;
+}
+
+.map button{
+  font-size: medium;
+}
+
+h1{
+  text-align: center;
 }
