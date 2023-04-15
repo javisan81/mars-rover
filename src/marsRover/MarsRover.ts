@@ -1,5 +1,5 @@
 import {Direction, MarsRoverUseCase, MoveCommand, Position} from "./MarsRoverInterface";
-import {getVector, nextDirection} from "./Movements";
+import {nextDirection, nextPosition} from "./Movements";
 
 export class PositionDirection {
     readonly position: Position;
@@ -33,12 +33,10 @@ export class MarsRover implements MarsRoverUseCase {
 
     move(commands: MoveCommand[]): void {
         commands.forEach((command) => {
-            const {direction} = this.positionDirection;
             this.positionDirection = new PositionDirection(
-                getVector(direction, command).apply(this.positionDirection.position),
+                nextPosition(command, this.getDirection(), this.getPosition()),
                 nextDirection(command, this.getDirection())
             );
         })
     }
-
 }

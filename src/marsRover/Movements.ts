@@ -51,15 +51,17 @@ const Right = new Map<Direction, Direction>(
     ]
 );
 
-export function getVector(direction: Direction, command: MoveCommand): Vector {
+export function nextPosition(command: MoveCommand, direction: Direction, currentPosition: Position): Position {
+    let vector = samePositionVector;
     switch (command) {
         case MoveCommand.Backward:
-            return Backward.get(direction) || samePositionVector;
+            vector = Backward.get(direction) || samePositionVector;
+            break;
         case MoveCommand.Forward:
-            return Forward.get(direction) || samePositionVector;
-        default:
-            return samePositionVector;
+            vector = Forward.get(direction) || samePositionVector;
+            break
     }
+    return vector.apply(currentPosition)
 }
 
 export function nextDirection(command: MoveCommand, currentDirection: Direction): Direction {
