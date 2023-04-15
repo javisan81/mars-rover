@@ -19,7 +19,7 @@ export interface Position {
 }
 
 export interface MarsRoverUseCase {
-    move: (comands: MoveCommand[]) => void;
+    move: (commands: MoveCommand[]) => void;
     getPosition: () => Position;
     getDirection: () => Direction;
 }
