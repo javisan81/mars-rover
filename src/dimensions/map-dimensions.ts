@@ -1,4 +1,4 @@
-import {mapDimensions} from "./map-dimensions-storage";
+import {mapDimensions, reset} from "./map-dimensions-storage";
 
 export interface MapDimensions {
     width: number;
@@ -22,6 +22,8 @@ export const changeHeight = (newValue: number): void => {
 export const getMapDimensions = (): MapDimensions => {
     return mapDimensions;
 }
+
+export const resetMapDimensions = () => reset();
 
 export const useDimensions = (): MapDimensions => {
     return mapDimensions;

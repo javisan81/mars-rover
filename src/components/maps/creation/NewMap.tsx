@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import {changeHeight, changeWidth, useDimensions} from "../../../dimensions/map-dimensions";
+import React, {useEffect, useState} from "react";
+import {changeHeight, changeWidth, resetMapDimensions, useDimensions} from "../../../dimensions/map-dimensions";
 import {useNavigate} from "react-router-dom";
 import "./newMap.css";
 
@@ -11,6 +11,9 @@ export function NewMap() {
     const onClick = () => {
         navigate("/map");
     }
+    useEffect(() => {
+        resetMapDimensions();
+    }, []);
 
     function onChange(e: React.ChangeEvent<HTMLInputElement>, changeMethod: (newValue: number) => void) {
         try {
@@ -31,7 +34,7 @@ export function NewMap() {
     return (
         <div className={"newMap"}>
             <h1>Mars Rover</h1>
-            {errorMessage && <span>{errorMessage}</span>}
+            {errorMessage && <span className={"error"}>{errorMessage}</span>}
             <div className={"question"}>
                 <label htmlFor={"height"}>¿Cual será la altura de nuestro mapa?</label>
                 <input id={"height"} type="number" onChange={onChangeHeight}/>

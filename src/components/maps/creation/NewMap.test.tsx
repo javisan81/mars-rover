@@ -47,6 +47,13 @@ describe('NewMap', function () {
         expect(screen.queryByText("Estamos en el mapa del marsRover")).not.toBeInTheDocument();
     });
 
+    it('should not redirect if the user just fill one dimensions', function () {
+        renderWithRouter(<NewMap/>);
+        userEvent.type(screen.getByLabelText("¿Cual será la altura de nuestro mapa?"), "1");
+        fireEvent.click(screen.getByText("Juguemos"));
+        expect(screen.queryByText("Estamos en el mapa del marsRover")).not.toBeInTheDocument();
+    });
+
     it('should not allow negative numbers inside the dimensions inputs', function () {
         renderWithRouter(<NewMap/>);
         userEvent.type(screen.getByLabelText("¿Cual será la altura de nuestro mapa?"), "-1");
