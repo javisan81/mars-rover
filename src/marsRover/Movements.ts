@@ -1,6 +1,6 @@
 import {Direction, MoveCommand, Position} from "./MarsRoverInterface";
 
-export class Movements {
+class Movements {
     private readonly x: number
     private readonly y: number
 
