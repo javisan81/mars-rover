@@ -1,8 +1,7 @@
-import surface from "./mars-surface.jpeg";
-import rover from "./rover.png";
 import {useDimensions} from "../../../dimensions/map-dimensions";
 import {Direction, MoveCommand, Position, useMarsRover} from "./MarsRover";
 import {useState} from "react";
+import {RoverElement, SurfaceElement} from "./MarsElements";
 
 interface MarsRowProps {
     rowNumber: number;
@@ -54,30 +53,7 @@ const MarsRow = ({rowNumber, cols, roverPosition, roverDirection}: MarsRowProps)
         </div>
     )
 }
-const SurfaceElement = (): JSX.Element => (
-    <div>
-        <img
-            src={surface}
-            alt="Mars surface"
-            className="img-surface"
-        />
-    </div>
-);
 
-interface RoverElementProps {
-    direction: Direction
-}
-
-const RoverElement = ({direction}: RoverElementProps): JSX.Element => (
-    <div>
-        <img
-            src={rover}
-            alt="Mars Rover"
-            className="img-rover"
-            style={{transform: `rotate(${rotationByDirection.get(direction)})`}}
-        />
-    </div>
-);
 export const MarsView = (): JSX.Element => {
     const {height, width} = useDimensions();
     const marsRover = useMarsRover();
