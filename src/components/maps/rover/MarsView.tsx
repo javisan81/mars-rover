@@ -3,6 +3,7 @@ import {useMarsRover} from "../../../marsRover/MarsRoverHook";
 import {useState} from "react";
 import {RoverElement, SurfaceElement} from "./MarsElements";
 import {Direction, MoveCommand, Position} from "../../../marsRover/MarsRoverInterface";
+import "./marsView.css";
 
 interface MarsRowProps {
     rowNumber: number;
@@ -40,7 +41,7 @@ const MarsRow = ({rowNumber, cols, roverPosition, roverDirection}: MarsRowProps)
     let rangeForSurfaces = Array.from(Array(cols).keys()).map(x => x + 1);
     const {row: roversRow, col: roversCol} = roverPosition;
     return (
-        <div aria-label={`${ROW_NAME}${rowNumber}`}>
+        <div aria-label={`${ROW_NAME}${rowNumber}`} className="surface-grid-wrapper">
             {
                 rangeForSurfaces.map((col) => (
                     <div key={col} aria-label={`${COLUMN_NAME}${col}`}>

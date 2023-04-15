@@ -1,0 +1,32 @@
+.surface-grid {
+  box-shadow: 0 0 20px 20px #9a5e3f;
+}
+
+.surface-grid-wrapper {
+  display: flex;
+  justify-content: center;
+  padding-top: 25px;
+}
+
+.surface-row {
+  display: flex;
+}
+
+.surface-elem {
+  padding: 1px;
+  align-items: center;
+  justify-items: center;
+  background-color: rgba(214, 14, 16, 0.31);
+  transition: background 0.2s;
+  height: 100px;
+  width: 100px;
+}
+.img-rover {
+  width: 100px;
+  height: 100px;
+}
+
+.img-surface {
+  width: 100px;
+  height: 100px;
+}

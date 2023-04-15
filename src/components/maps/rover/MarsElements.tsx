@@ -18,7 +18,7 @@ interface RoverElementProps {
 }
 
 export const RoverElement = ({direction}: RoverElementProps): JSX.Element => (
-    <div>
+    <div className="surface-elem">
         <img
             src={rover}
             alt="Mars Rover"
