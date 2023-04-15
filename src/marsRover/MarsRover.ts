@@ -38,6 +38,12 @@ export class MarsRover implements MarsRoverUseCase {
             if (direction === Direction.East) {
                 this.positionDirection = new PositionDirection({...position, col: position.col + 1}, direction);
             }
+            if (direction === Direction.North) {
+                this.positionDirection = new PositionDirection({...position, row: position.row - 1}, direction);
+            }
+            if (direction === Direction.South) {
+                this.positionDirection = new PositionDirection({...position, row: position.row + 1}, direction);
+            }
         }
     }
 }

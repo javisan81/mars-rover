@@ -14,8 +14,16 @@ describe('MarsRoverInterface use case', function () {
         ], [
             new PositionDirection({row: 1, col: 3}, Direction.East),
             new PositionDirection({row: 1, col: 4}, Direction.East),
-        ]
-    ])(`should move the rover from %s to %s`, (initialPositionDirection, finalPositionDirection) => {
+        ],
+        [
+            new PositionDirection({row: 2, col: 2}, Direction.North),
+            new PositionDirection({row: 1, col: 2}, Direction.North),
+        ],
+        [
+            new PositionDirection({row: 1, col: 2}, Direction.South),
+            new PositionDirection({row: 2, col: 2}, Direction.South),
+        ],
+    ])(`should move forward the rover from %s to %s`, (initialPositionDirection, finalPositionDirection) => {
         const rover = new MarsRover(initialPositionDirection);
         rover.move([MoveCommand.Forward]);
         expect(rover.getPosition()).toEqual(finalPositionDirection.position);
