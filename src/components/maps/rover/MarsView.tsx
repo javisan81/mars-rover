@@ -57,7 +57,7 @@ const MarsRow = ({rowNumber, cols, roverPosition, roverDirection}: MarsRowProps)
 
 export const MarsView = (): JSX.Element => {
     const {height, width} = useDimensions();
-    const marsRover = useMarsRover();
+    const marsRover = useMarsRover(height, width);
     const [roverPosition, setRoverPosition] = useState(marsRover.getPosition());
     const [roverDirection, setRoverDirection] = useState(marsRover.getDirection());
 
