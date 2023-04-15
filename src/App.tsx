@@ -4,11 +4,11 @@ import {Navigation} from "./components/maps/Navigation";
 import {BrowserRouter} from "react-router-dom";
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Navigation/>
-    </BrowserRouter>
-  );
+    return (
+        <BrowserRouter>
+            <Navigation/>
+        </BrowserRouter>
+    );
 }
 
 export default App;

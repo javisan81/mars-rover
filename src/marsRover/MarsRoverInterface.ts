@@ -17,6 +17,7 @@ export interface Position {
     row: number;
     col: number;
 }
+
 export interface MarsMap {
     maxHeight: number,
     maxWidth: number

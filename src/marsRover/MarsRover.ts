@@ -32,7 +32,7 @@ export class MarsRover implements MarsRoverUseCase {
     getPosition(): Position {
         return this.positionDirection.position;
     }
-    
+
     getMap(): MarsMap {
         return this.map;
     }

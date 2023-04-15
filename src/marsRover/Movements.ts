@@ -50,7 +50,8 @@ const Right = new Map<Direction, Direction>(
         [Direction.South, Direction.West]
     ]
 );
-function calculateByLimit(dimension: number, maxDimensionLimit: number){
+
+function calculateByLimit(dimension: number, maxDimensionLimit: number) {
     if (dimension === 0) {
         return maxDimensionLimit;
     }

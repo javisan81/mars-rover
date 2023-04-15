@@ -6,12 +6,13 @@
     padding-top: 5px;
     width: 100%;
 }
-.question input{
+
+.question input {
     margin-left: 5px;
     width: 40px;
 }
 
-button{
+button {
     margin-top: 10px;
 }
 
