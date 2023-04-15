@@ -1,5 +1,5 @@
-import {Direction, MoveCommand, PositionDirection,} from "./MarsRoverInterface";
-import {MarsRover} from "./MarsRover";
+import {Direction, MoveCommand,} from "./MarsRoverInterface";
+import {MarsRover, PositionDirection} from "./MarsRover";
 
 describe('MarsRoverInterface use case', function () {
     it('should be created in position 1,1 facing west', function () {
@@ -9,11 +9,11 @@ describe('MarsRoverInterface use case', function () {
     });
     it.each([
         [
-            new PositionDirection({row:1, col:3}, Direction.West),
-            new PositionDirection({row:1, col:2}, Direction.West),
+            new PositionDirection({row: 1, col: 3}, Direction.West),
+            new PositionDirection({row: 1, col: 2}, Direction.West),
         ], [
-            new PositionDirection({row:1, col:3}, Direction.East),
-            new PositionDirection({row:1, col:4}, Direction.East),
+            new PositionDirection({row: 1, col: 3}, Direction.East),
+            new PositionDirection({row: 1, col: 4}, Direction.East),
         ]
     ])(`should move the rover from %s to %s`, (initialPositionDirection, finalPositionDirection) => {
         const rover = new MarsRover(initialPositionDirection);

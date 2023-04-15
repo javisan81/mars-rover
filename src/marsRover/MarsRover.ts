@@ -1,35 +1,42 @@
-import {Direction, MarsRoverUseCase, MoveCommand, Position, PositionDirection} from "./MarsRoverInterface";
+import {Direction, MarsRoverUseCase, MoveCommand, Position} from "./MarsRoverInterface";
+
+export class PositionDirection {
+    readonly position: Position;
+    readonly direction: Direction;
+
+    constructor(position: Position, direction: Direction) {
+        this.position = position;
+        this.direction = direction;
+    }
+
+    public toString(): String {
+        return `row:${this.position.row} col:${this.position.col}, facing: ${this.direction}`;
+    }
+}
 
 export class MarsRover implements MarsRoverUseCase {
-    private position: Position;
-    private direction: Direction;
+    private positionDirection: PositionDirection;
 
     constructor(positionDirection: PositionDirection) {
-        this.position = positionDirection.position;
-        this.direction = positionDirection.direction;
+        this.positionDirection = positionDirection;
     }
 
     getDirection(): Direction {
-        return this.direction;
+        return this.positionDirection.direction;
     }
 
     getPosition(): Position {
-        return this.position;
+        return this.positionDirection.position;
     }
 
     move(commands: MoveCommand[]): void {
+        const {position, direction} = this.positionDirection;
         if (commands[0] === MoveCommand.Forward) {
-            if (this.direction === Direction.West) {
-                this.position = {
-                    ...this.position,
-                    col: this.position.col - 1
-                }
+            if (direction === Direction.West) {
+                this.positionDirection = new PositionDirection({...position, col: position.col - 1}, direction);
             }
-            if (this.direction === Direction.East) {
-                this.position = {
-                    ...this.position,
-                    col: this.position.col + 1
-                }
+            if (direction === Direction.East) {
+                this.positionDirection = new PositionDirection({...position, col: position.col + 1}, direction);
             }
         }
     }
