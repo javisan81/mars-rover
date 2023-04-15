@@ -1,5 +1,13 @@
 export enum MoveCommand {
-    Forward = "Forward"
+    Forward = "Forward",
+    Backward = "Backward",
+    Left = "Left", Right = "Right"
+}
+export enum Direction {
+    North= "North",
+    South= "South",
+    East = "East",
+    West = "West"
 }
 
 export interface Position {
@@ -10,6 +18,7 @@ export interface Position {
 interface MarsRoverUseCase {
     move: (comands: MoveCommand[]) => void;
     getPosition: () => Position;
+    getDirection: () => Direction;
 }
 
 export const useMarsRover = (): MarsRoverUseCase => {
@@ -17,5 +26,6 @@ export const useMarsRover = (): MarsRoverUseCase => {
         move: (comands: MoveCommand[]) => {
         },
         getPosition: () => ({row: 1, col: 1}),
+        getDirection: () => Direction.West
     }
 }

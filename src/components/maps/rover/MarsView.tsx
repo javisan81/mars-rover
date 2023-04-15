@@ -1,35 +1,43 @@
 import surface from "./mars-surface.jpeg";
 import rover from "./rover.png";
 import {useDimensions} from "../../../dimensions/map-dimensions";
-import {MoveCommand, Position, useMarsRover} from "./MarsRover";
+import {Direction, MoveCommand, Position, useMarsRover} from "./MarsRover";
 import {useState} from "react";
+import {Dir} from "fs";
 
 interface MarsRowProps {
     rowNumber: number;
     cols: number;
     roverPosition: Position;
+    roverDirection: Direction;
 }
 
 export const COLUMN_NAME = "Col";
 export const ROW_NAME = "Row";
-
+export const rotationByDirection = new Map<Direction, String>([
+    [Direction.North, "90deg"],
+    [Direction.South, "270deg"],
+    [Direction.East, "180deg"],
+    [Direction.West, "0deg"]
+]);
 
 interface MarsColPros {
     rowNumber: number,
     colNumber: number,
     roversRow: number,
-    roversCol: number
+    roversCol: number,
+    roverDirection: Direction
 }
 
-const MarsCol = ({rowNumber, colNumber, roversRow, roversCol}: MarsColPros): JSX.Element => {
+const MarsCol = ({rowNumber, colNumber, roversRow, roversCol, roverDirection}: MarsColPros): JSX.Element => {
     if (rowNumber === roversRow && colNumber === roversCol) {
-        return <RoverElement/>;
+        return <RoverElement direction={roverDirection}/>;
     } else {
         return <SurfaceElement/>;
     }
 }
 
-const MarsRow = ({rowNumber, cols, roverPosition}: MarsRowProps) => {
+const MarsRow = ({rowNumber, cols, roverPosition, roverDirection}: MarsRowProps) => {
     let rangeForSurfaces = Array.from(Array(cols).keys()).map(x => x + 1);
     const {row: roversRow, col: roversCol} = roverPosition;
     return (
@@ -38,7 +46,7 @@ const MarsRow = ({rowNumber, cols, roverPosition}: MarsRowProps) => {
                 rangeForSurfaces.map((col) => (
                     <div key={col} aria-label={`${COLUMN_NAME}${col}`}>
                         {
-                            <MarsCol rowNumber={rowNumber} colNumber={col} roversRow={roversRow} roversCol={roversCol}/>
+                            <MarsCol rowNumber={rowNumber} colNumber={col} roversRow={roversRow} roversCol={roversCol} roverDirection={roverDirection}/>
                         }
                     </div>
                 ))
@@ -55,12 +63,16 @@ const SurfaceElement = (): JSX.Element => (
         />
     </div>
 );
-const RoverElement = (): JSX.Element => (
+interface RoverElementProps {
+    direction: Direction
+}
+const RoverElement = ({direction}: RoverElementProps): JSX.Element => (
     <div>
         <img
             src={rover}
             alt="Mars Rover"
             className="img-rover"
+            style={{ transform: `rotate(${rotationByDirection.get(direction)})` }}
         />
     </div>
 );
@@ -68,20 +80,32 @@ export const MarsView = (): JSX.Element => {
     const {height, width} = useDimensions();
     const marsRover = useMarsRover();
     const [roverPosition, setRoverPosition] = useState(marsRover.getPosition());
+    const [roverDirection, setRoverDirection] = useState(marsRover.getDirection);
 
     const moveForward = () => {
         marsRover.move([MoveCommand.Forward])
         setRoverPosition(marsRover.getPosition());
+    }
+    const moveBackward = () => {
+        marsRover.move([MoveCommand.Backward])
+        setRoverPosition(marsRover.getPosition());
+    }
+    const turnLeft = () => {
+        marsRover.move([MoveCommand.Left])
+        setRoverDirection(marsRover.getDirection());
     }
     return (
         <div>
             {
                 Array.from(Array(height).keys()).map(x => x + 1).map(row => <MarsRow key={row} cols={width}
                                                                                      rowNumber={row}
-                                                                                     roverPosition={roverPosition}/>)
+                                                                                     roverPosition={roverPosition}
+                                                                                     roverDirection={roverDirection}/>)
             }
             <div>
                 <button onClick={moveForward}>Forward</button>
+                <button onClick={moveBackward}>Backward</button>
+                <button onClick={turnLeft}>Left</button>
             </div>
         </div>
     );
