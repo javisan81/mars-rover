@@ -59,9 +59,16 @@ function adjustToMap(position: Position, map: MarsMap): Position {
     if (position.row === map.maxHeight + 1) {
         row = 1;
     }
+    let col = position.col;
+    if (position.col === 0) {
+        col = map.maxWidth;
+    }
+    if (position.col === map.maxWidth + 1) {
+        col = 1;
+    }
     return {
-        ...position,
-        row
+        row,
+        col
     };
 }
 
