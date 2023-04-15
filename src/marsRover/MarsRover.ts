@@ -14,6 +14,7 @@ export class PositionDirection {
         return `row:${this.position.row} col:${this.position.col}, facing: ${this.direction}`;
     }
 }
+
 const samePositionVector = new Vector(0, 0);
 
 const Forward = new Map<Direction, Vector>(
@@ -42,6 +43,15 @@ const Left = new Map<Direction, Direction>(
     ]
 );
 
+const Right = new Map<Direction, Direction>(
+    [
+        [Direction.West, Direction.North],
+        [Direction.East, Direction.South],
+        [Direction.North, Direction.East],
+        [Direction.South, Direction.West]
+    ]
+);
+
 function getVector(direction: Direction, command: MoveCommand): Vector {
     switch (command) {
         case MoveCommand.Backward:
@@ -49,11 +59,20 @@ function getVector(direction: Direction, command: MoveCommand): Vector {
         case MoveCommand.Forward:
             return Forward.get(direction) || samePositionVector;
         default:
-            return samePositionVector
+            return samePositionVector;
     }
 }
-function nextDirection(direction: Direction): Direction {
-    return Left.get(direction) || direction;
+
+function nextDirection(command: MoveCommand, currentDirection: Direction): Direction {
+    switch (command) {
+        case MoveCommand.Left:
+            return Left.get(currentDirection) || currentDirection;
+        case MoveCommand.Right:
+            return Right.get(currentDirection) || currentDirection;
+        default:
+            return currentDirection;
+    }
+
 }
 
 export class MarsRover implements MarsRoverUseCase {
@@ -73,7 +92,7 @@ export class MarsRover implements MarsRoverUseCase {
 
     move(commands: MoveCommand[]): void {
         const {direction} = this.positionDirection;
-        this.positionDirection = new PositionDirection(getVector(direction, commands[0]).apply(this.positionDirection.position), nextDirection(direction));
+        this.positionDirection = new PositionDirection(getVector(direction, commands[0]).apply(this.positionDirection.position), nextDirection(commands[0], this.getDirection()));
     }
 
 }
