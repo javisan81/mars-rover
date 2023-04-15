@@ -52,9 +52,16 @@ const Right = new Map<Direction, Direction>(
 );
 
 function adjustToMap(position: Position, map: MarsMap): Position {
+    let row = position.row;
+    if (position.row === 0) {
+        row = map.maxHeight;
+    }
+    if (position.row === map.maxHeight + 1) {
+        row = 1;
+    }
     return {
         ...position,
-        row: position.row === 0 ? map.maxHeight : position.row
+        row
     };
 }
 

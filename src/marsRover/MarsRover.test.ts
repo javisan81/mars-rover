@@ -110,10 +110,17 @@ describe('MarsRoverInterface use case', function () {
         expect(rover.getDirection()).toEqual(Direction.West);
     });
 
-    it('should forward the rover from 1,1 North to 5,1 North', function () {
+    it('should forward the rover from 1,3 North to 5,3 North', function () {
         const rover = new MarsRover(new PositionDirection({row: 1, col: 3}, Direction.North), {maxHeight: 5, maxWidth:4});
         rover.move([MoveCommand.Forward]);
         expect(rover.getPosition()).toEqual({row: 5, col: 3});
+        expect(rover.getDirection()).toEqual(Direction.North);
+    });
+
+    it('should backward the rover from 5,3 South to 1,3 South', function () {
+        const rover = new MarsRover(new PositionDirection({row: 5, col: 3}, Direction.North), {maxHeight: 5, maxWidth:4});
+        rover.move([MoveCommand.Backward]);
+        expect(rover.getPosition()).toEqual({row: 1, col: 3});
         expect(rover.getDirection()).toEqual(Direction.North);
     });
 });
