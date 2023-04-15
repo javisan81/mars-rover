@@ -14,6 +14,7 @@ export class PositionDirection {
         return `row:${this.position.row} col:${this.position.col}, facing: ${this.direction}`;
     }
 }
+const samePositionVector = new Vector(0, 0);
 
 const Forward = new Map<Direction, Vector>(
     [
@@ -32,8 +33,16 @@ const Backward = new Map<Direction, Vector>(
     ]
 );
 
+const Left = new Map<Direction, Direction>(
+    [
+        [Direction.West, Direction.South],
+        [Direction.East, Direction.North],
+        [Direction.North, Direction.West],
+        [Direction.South, Direction.East]
+    ]
+);
+
 function getVector(direction: Direction, command: MoveCommand): Vector {
-    const samePositionVector = new Vector(0, 0);
     switch (command) {
         case MoveCommand.Backward:
             return Backward.get(direction) || samePositionVector;
@@ -42,6 +51,9 @@ function getVector(direction: Direction, command: MoveCommand): Vector {
         default:
             return samePositionVector
     }
+}
+function nextDirection(direction: Direction): Direction {
+    return Left.get(direction) || direction;
 }
 
 export class MarsRover implements MarsRoverUseCase {
@@ -61,6 +73,7 @@ export class MarsRover implements MarsRoverUseCase {
 
     move(commands: MoveCommand[]): void {
         const {direction} = this.positionDirection;
-        this.positionDirection = new PositionDirection(getVector(direction, commands[0]).apply(this.positionDirection.position), direction);
+        this.positionDirection = new PositionDirection(getVector(direction, commands[0]).apply(this.positionDirection.position), nextDirection(direction));
     }
+
 }
