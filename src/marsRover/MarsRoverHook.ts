@@ -1,7 +1,7 @@
-import {MarsRoverUseCase} from "./MarsRoverInterface";
+import {Direction, MarsRoverUseCase} from "./MarsRoverInterface";
 import {MarsRover} from "./MarsRover";
 
 
 export const useMarsRover = (): MarsRoverUseCase => {
-    return new MarsRover();
+    return new MarsRover({row:1, col:1}, Direction.West);
 }
