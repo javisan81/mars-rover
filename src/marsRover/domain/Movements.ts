@@ -1,4 +1,4 @@
-import {Direction, MarsMap, MoveCommand, Position} from "./MarsRoverInterface";
+import {Direction, MarsMap, MoveCommand, Position} from "../MarsRoverInterface";
 
 class Vector {
     private readonly x: number

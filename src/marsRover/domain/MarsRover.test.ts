@@ -1,4 +1,4 @@
-import {Direction, MoveCommand,} from "./MarsRoverInterface";
+import {Direction, MoveCommand,} from "../MarsRoverInterface";
 import {MarsRover, PositionDirection} from "./MarsRover";
 
 describe('MarsRoverInterface use case', function () {

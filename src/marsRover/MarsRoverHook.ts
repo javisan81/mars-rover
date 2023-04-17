@@ -1,5 +1,5 @@
 import {Direction, MarsRoverUseCase} from "./MarsRoverInterface";
-import {MarsRover, PositionDirection} from "./MarsRover";
+import {MarsRover, PositionDirection} from "./domain/MarsRover";
 import {useMemo} from "react";
 
 
